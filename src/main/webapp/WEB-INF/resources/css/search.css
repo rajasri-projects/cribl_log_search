@@ -1,0 +1,9 @@
+body {
+  font-family: IBM Plex Serif;
+}
+
+.logo {
+  font-size: 2.5em;
+  margin-top: 25px;
+  margin-bottom: 100px;
+}

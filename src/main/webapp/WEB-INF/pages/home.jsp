@@ -16,7 +16,7 @@
         <div class="row">
             <div class="col-md-2"></div>
             <div class="col-md-8 logo text-center">
-                <img src="resources/images/cribl.png" height="100px;" width="100px;" /> Cribl - Log Search
+                <img src="resources/images/cribl.png" height="50px;" width="50px;" /> Cribl - Log Search
             </div>
             <div class="col-md-2"></div>
         </div>

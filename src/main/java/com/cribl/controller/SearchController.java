@@ -1,5 +1,7 @@
 package com.cribl.controller;
 
+import com.cribl.helper.SearchHelper;
+import com.cribl.model.SearchFilter;
 import com.cribl.service.SearchService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -22,12 +24,16 @@ public class SearchController {
     @Autowired
     private SearchService searchService;
 
+    @Autowired
+    private SearchHelper searchHelper;
+
     @RequestMapping(method = RequestMethod.GET)
     @ResponseStatus(HttpStatus.OK)
     public ResponseEntity<StreamingResponseBody> search(@RequestParam(name="query", required = false) String query,
                                                         HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) {
+        final SearchFilter searchFilter = searchHelper.getSearchFilter(query);
         StreamingResponseBody responseBody = response -> {
-            // Stream response
+            searchService.search(searchFilter, response);
         };
         return ResponseEntity.ok()
             .contentType(MediaType.TEXT_PLAIN)

@@ -16,7 +16,7 @@ public class HomeController {
 
     @RequestMapping(method = RequestMethod.GET)
     @ResponseStatus(HttpStatus.OK)
-    public ModelAndView getPage(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) {
+    public ModelAndView getPage() {
         final ModelAndView modelAndView = new ModelAndView("home");
         return modelAndView;
     }

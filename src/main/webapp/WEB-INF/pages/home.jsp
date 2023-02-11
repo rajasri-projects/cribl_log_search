@@ -36,6 +36,11 @@
             </div>
             <div class="col-md-2"></div>
         </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div id="searchDataId"></div>
+            </div>
+        </div>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"></script>

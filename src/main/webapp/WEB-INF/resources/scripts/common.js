@@ -3,20 +3,6 @@ $(document).ready(function(){
 
 });
 
-function callServer(url, type, data, processData, contentType) {
-    return $.ajax({
-        url: url,
-        type: type,
-        data: data,
-        processData: processData,
-        contentType: contentType,
-        xhrFields: {
-            withCredentials: true
-        },
-        crossDomain: true
-    });
-}
-
 function getURL(endPoint) {
     switch (endPoint) {
         case 'SEARCH':

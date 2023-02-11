@@ -24,6 +24,9 @@ function isValidSearchInput() {
     return isValidSearch;
 }
 
+var xhr;
+var seenBytes = 0;
+var interval;
 $('.container').on('click', '.btn', function(event) {
     event.preventDefault();
 
@@ -37,18 +40,21 @@ $('.container').on('click', '.btn', function(event) {
                 $('#searchSubmitBtnId').attr('disabled', 'disabled');
                 $('.searchFormSpinner').show();
 
-                var request = getURL('SEARCH') + "?query=" + encodeURIComponent($('#searchInputTextId').val());
-                var promise = callServer(request, 'GET', null, true,
-                    'application/json; charset=utf-8');
-                promise.done(function(data, textStatus, jqXHR) {
-                    $('.searchFormSpinner').hide();
-                    $('#searchSubmitBtnId').removeAttr('disabled');
-                });
-                promise.fail(function(jqXHR, textStatus, errorThrown) {
-                    $('.searchFormSpinner').hide();
-                    $('#searchSubmitBtnId').removeAttr('disabled');
-                    displayMessage('#messageSearchFormId', 2, jqXHR.responseJSON.errors[0]);
-                });
+                var url = getURL('SEARCH') + "?query=" + encodeURIComponent($('#searchInputTextId').val());
+
+                if (xhr) {
+                    xhr.abort();
+                }
+                xhr = new XMLHttpRequest();
+                xhr.open("GET", url, true);
+                xhr.send();
+
+                seenBytes = 0;
+
+                if (interval) {
+                    clearInterval(interval);
+                }
+                interval = setInterval(displayData, 1000);
             } else {
                 $('.searchForm').addClass('was-validated');
             }
@@ -58,3 +64,10 @@ $('.container').on('click', '.btn', function(event) {
             break;
     }
 });
+
+function displayData() {
+    var newData = xhr.response.substr(seenBytes);
+    console.log("Display");
+    $("#searchDataId").append(newData);
+    seenBytes = xhr.responseText.length;
+}

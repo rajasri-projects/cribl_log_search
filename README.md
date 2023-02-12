@@ -12,7 +12,7 @@ A back-end, that exposes the REST API that does the querying / searching of the 
 
 To help with the high level visualization of the system, refer the below diagram:
 
-<Diagram>
+![High Level System Diagram](https://raw.githubusercontent.com/rajasri-projects/cribl_log_search/main/src/main/webapp/WEB-INF/resources/images/Cribl_Log_Search.png)
 
 ### Technologies
 

@@ -9,6 +9,13 @@ import org.springframework.stereotype.Component;
 public class SearchHelper {
     private static final String DEFAULT_FILENAME = "application_log";
 
+    /**
+     * An helper for converting the query provided by the user to
+     * an internal model (object).
+     *
+     * @param query
+     * @return
+     */
     public SearchFilter getSearchFilter(final String query) {
         final SearchFilter searchFilter = new SearchFilter();
         if (StringUtils.isBlank(query)) {

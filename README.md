@@ -118,7 +118,7 @@ The application currently uses Apache's [ReversedLinesFileReader](https://common
 
 The application has good unit test coverage. We should add support for integration testing and E2E to test the functionality of the system thoroughly.
 
-
+Thoughts on scaling the system with one or more primary servers and one or more secondary servers: Currently, the architecture of the system requires that the requests be sent to the server that contains the logs the user is interested in. We could explore an alternate arrangement where all the requests are sent to one or more primaries, with the primaries delegating the requests to one or more secondaries. There are pros / cons of both these approaches. One of the pros of the latter arrangement is that, the location of the system (or the system itself) is abstracted from the end-user, while the intermediary primaries are responsible for translating / mapping the requests coming from the user to the appropriate server on the back-end. An additional advantage with this setup is that it could simplify things like authentication / authorization if the requests have to go through a handful of intermediary systems. There could also be advantages around caching (of similarly issued queries) that all clients could utilize. The disadvantage of the latter approach is that, it adds a layer of complexity and requires that the primary fleet of servers is scaled enough to accommodate all pass-through traffic.
 
 
 
